@@ -6,10 +6,12 @@ RUN set -xe && \
         libmcrypt-dev \
         libmhash-dev \
         libcap-dev \
-    && docker-php-ext-install -j$(nproc) iconv mcrypt mysqli pdo pdo_mysql sockets 
+    && docker-php-ext-install -j$(nproc) iconv mcrypt mysqli pdo pdo_mysql sockets \
     && rm -r /var/lib/apt/lists/* \
     && easy_install supervisor
 
 COPY docker-entrypoint.sh /usr/local/bin/                                                                                                                                                            
+
 ENTRYPOINT ["docker-entrypoint.sh"]                                                                                                                                                                  
+
 CMD ["supervisord", "-n", "-c", "/etc/supervisord.conf"]
