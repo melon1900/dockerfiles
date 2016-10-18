@@ -10,4 +10,9 @@ if [ "${1#-}" != "$1" ]; then
 	set -- supervisord "$@"
 fi
 
+# allow the container to be started with www-data
+if [ "$1" = 'supervisord' -a "$(id -u)" = '0' ]; then
+    chown -R www-data:www-data /www/log/jobs
+    exec gosu www-data "$0" "$@"
+fi
 exec "$@"
