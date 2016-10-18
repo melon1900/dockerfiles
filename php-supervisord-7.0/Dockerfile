@@ -26,7 +26,7 @@ RUN set -x \
     && chmod +x /usr/local/bin/gosu \
     && gosu nobody true
 
-RUN mkdir -p /www/log/jobs
+RUN mkdir -p /www/log/jobs /www/web/queue
 
 COPY docker-entrypoint.sh /usr/local/bin/                                                                                                                                                            
 COPY supervisord.conf /etc/supervisor/supervisord.conf                                                                                                                                                           
