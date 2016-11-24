@@ -14,6 +14,9 @@ RUN set -xe && \
     && docker-php-ext-install -j$(nproc) iconv mcrypt mysqli pdo pdo_mysql sockets \
     && rm -r /var/lib/apt/lists/*
     
+COPY ioncube.so /usr/local/lib/php/extensions/no-debug-non-zts-20151012/
+RUN set -xe && docker-php-ext-enable ioncube 
+
 # grab gosu for easy step-down from root
 ENV GOSU_VERSION 1.9
 RUN set -x \

@@ -18,6 +18,9 @@ RUN set -xe && \
         && docker-php-ext-enable redis \
         && mkdir -p /www/web /phmsdata
 
+COPY ioncube.so /usr/local/lib/php/extensions/no-debug-non-zts-20131226/
+RUN set -xe && docker-php-ext-enable ioncube 
+
 COPY docker-entrypoint.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
