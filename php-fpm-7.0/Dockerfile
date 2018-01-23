@@ -9,7 +9,7 @@ RUN set -xe && \
         libcap-dev \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
-        libpng12-dev \
+        libpng-dev \
         && rm -r /var/lib/apt/lists/* \
         && docker-php-ext-install -j$(nproc) iconv mysqli pdo pdo_mysql sockets opcache \
         && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
